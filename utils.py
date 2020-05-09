@@ -13,7 +13,10 @@ def read_data(data_dir="data/"):
             if filename.endswith(".csv"):
                 df = pd.read_csv(subdir + os.sep + filename, index_col=0, skiprows=3)
                 name = df["Indicator Name"][0]
-                data[name] = json.loads(df.drop(columns=["Country Code","Indicator Name","Indicator Code"]).dropna(axis=1, how='all').dropna(axis=0, how='all').to_json(orient="index"))
+                data[name] = json.loads(df.drop(columns=["Country Code","Indicator Name","Indicator Code"])
+                                    .dropna(axis=1, how='all')
+                                    .dropna(axis=0, how='all')
+                                    .to_json(orient="index"))
 
                 
     return data
